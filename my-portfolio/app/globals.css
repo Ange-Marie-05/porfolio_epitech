@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  --background: #233146ee;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --font-sans: var(--font-space-sans);
+  --font-mono: var(--font-space-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-space-mono);
+  line-height: 1.6;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-sans);
+  color: var(--foreground);
+}
+
+@layer utilities {
+  @keyframes slideMenuOut {
+    0%, 1% { transform: translateX(100%); opacity: 0; }
+    15%, 100% { transform: translateX(0); opacity: 1; }
+  }
+
+  .animate-mobile-menu-out {
+    animation: slideMenuOut 5s linear;
+  }
+}
