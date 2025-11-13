@@ -64,13 +64,13 @@ export default function Home() {
                   GitHub
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/ange-marie-dovi-036a22386"
+                  href="https://www.linkedin.com/in/ange-marie-roland-dovi-43b574389"
                   target="_blank"
                   className="hover:text-cyan-400 transition-colors"
                 >
                   LinkedIn
                 </a>
-                <a href="/CV_AMR.pdf" download className="hover:text-cyan-400 transition-colors">
+                <a href="/CV_AMR_final_v1.pdf" download className="hover:text-cyan-400 transition-colors">
                   Télécharger CV
                 </a>
               </div>
