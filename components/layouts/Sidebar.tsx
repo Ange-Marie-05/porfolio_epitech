@@ -13,24 +13,21 @@ export default function Sidebar() {
     {
       title: "A propos",
       key: "about",
-      links: [{ label: "Qui suis-je", href: "#qui" }],
+      links: [{ label: "Qui suis-je", href: "#qui", key: "qui" }],
     },
     {
       title: "Projets",
       key: "projects",
       links: [
-        { label: "Web & Mobile", href: "#web-mobile" },
-        { label: "UX/UI Design", href: "#design" },
+        { label: "Web & Mobile", href: "#web-mobile", key: "web-mobile" },
+        { label: "UX/UI Design", href: "#design", key: "design" },
       ],
     },
     {
       title: "Contact",
       key: "contact",
       links: [
-        { label: "LinkedIn", href: "#linkedin" },
-        { label: "GitHub", href: "#github" },
         { label: "Me joindre", href: "#contact", key: "contact-link" },
-        { label: "Télécharger CV", href: "#contact", key: "download-cv" },
       ],
     },
   ];

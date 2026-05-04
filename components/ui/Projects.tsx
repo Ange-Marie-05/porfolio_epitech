@@ -171,7 +171,7 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto space-y-20">
 
         {/* WEB */}
-        <div className="space-y-8">
+        <div id="web-mobile" className="space-y-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-cyan-400">
             Projets Web
           </h2>
@@ -185,7 +185,7 @@ export default function Projects() {
         </div>
 
         {/* UX */}
-        <div className="space-y-12">
+        <div id="design" className="space-y-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-pink-400">
             Projets UX/UI
           </h2>
