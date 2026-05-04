@@ -29,8 +29,8 @@ export default function Sidebar() {
       links: [
         { label: "LinkedIn", href: "#linkedin" },
         { label: "GitHub", href: "#github" },
-        { label: "Me joindre", href: "#contact" },
-        { label: "Télécharger CV", href: "#contact" },
+        { label: "Me joindre", href: "#contact", key: "contact-link" },
+        { label: "Télécharger CV", href: "#contact", key: "download-cv" },
       ],
     },
   ];
@@ -38,7 +38,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile header */}
-      <header className="md:hidden fixed top-0 left-0 w-full bg-white/50 text-white flex items-center justify-between p-4 z-50 backdrop-blur-xl">
+      <header className="lg:hidden fixed top-0 left-0 w-full bg-white/50 text-white flex items-center justify-between p-4 z-50 backdrop-blur-xl">
         <h1 className="font-bold text-lg">AM Portfolio</h1>
         <button onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <img src="/close.svg" className="w-6 h-6" /> : <img src="/menu.svg" className="w-6 h-6" />}
@@ -47,7 +47,7 @@ export default function Sidebar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="md:hidden fixed top-16 left-0 w-full h-screen bg-gray-900 text-white flex flex-col py-8 px-6 gap-4 overflow-y-auto z-40">
+        <nav className="lg:hidden fixed top-16 left-0 w-full h-screen bg-gray-900 text-white flex flex-col py-8 px-6 gap-4 overflow-y-auto z-40">
           {menuItems.map((item) => (
             <div key={item.key}>
               <button
@@ -64,7 +64,7 @@ export default function Sidebar() {
                 }`}
               >
                 {item.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.key}>
                     <a href={link.href} onClick={() => setMenuOpen(false)} className="hover:underline">
                       {link.label}
                     </a>
@@ -77,14 +77,14 @@ export default function Sidebar() {
       )}
 
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex fixed top-0 left-0 w-[220px] lg:w-[260px] xl:w-[300px] h-screen  text-white flex-col py-12 px-6">
+      <aside className="hidden lg:flex fixed top-0 left-0 w-[220px] lg:w-[260px] xl:w-[300px] h-screen  text-white flex-col py-12 px-6">
         <h1 className="text-cyan-400 text-2xl font-bold mb-8">Ange-Marie Portfolio</h1>
         {menuItems.map((item) => (
           <div key={item.key} className="mb-8">
             <span className="font-semibold mb-2">{item.title}</span>
             <ul className="ml-4 space-y-2">
               {item.links.map((link) => (
-                <li key={link.href}>
+                <li key={link.key}>
                   <a href={link.href} className="inline-block hover:text-cyan-400 hover:underline underline-offset-4 decoration-cyan-400 transition-colors">
                     {link.label}
                   </a>

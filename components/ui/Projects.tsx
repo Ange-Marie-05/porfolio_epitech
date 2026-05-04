@@ -6,20 +6,31 @@ interface Project {
   description: string;
   image: string;
   link: string;
+  tags?: string[];
 }
 
 const webProjects: Project[] = [
   {
-    title: "Mon CV Digital",
+    title: "Mon CV Digital (v1)",
     description: "CV digital version web. Infos sur mon parcours.",
     image: "/images/digital_resume.png",
     link: "https://ange-marie-05.github.io/digitalresume/",
+    tags: ["HTML/CSS", "GitHub Pages"],
   },
   {
     title: "Job Board",
     description: "Plateforme pour stagiaires/alternants et recruteurs.",
     image: "/images/job_board.png",
     link: "https://job-board-aaa.vercel.app/",
+    tags: ["React", "Vercel"],
+  },
+  {
+    title: "Concorde",
+    description:
+      "Application de chat temps réel type Discord (serveurs, channels, rôles), avec frontend sur Vercel, backend sur Railway et base de données sur Supabase.",
+    image: "/images/concorde.png",
+    link: "https://rtc-strikes-back-ren3.vercel.app/servers",
+    tags: ["React", "Supabase", "Railway"],
   },
 ];
 
@@ -44,32 +55,57 @@ const uxProjects: Project[] = [
   },
 ];
 
-function WebProjectCard({ project, index }: { project: Project; index: number }) {
+function WebProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   return (
     <motion.a
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative w-full sm:w-auto bg-linear-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-800 hover:border-cyan-500/50 transition-all cursor-pointer"
-      initial={{ opacity: 0, y: 40 }}
+      className="group flex flex-col h-full bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-cyan-500/60 transition-all duration-300 shadow-lg"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -6 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ y: -5 }}
     >
-      <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
+      {/* Image 16/9 */}
+      <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-      <div className="p-5 space-y-3 bg-gray-900">
-        <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+
+      <div className="flex flex-col flex-1 p-5 gap-3">
+        <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
           {project.title}
         </h3>
-        <p className="text-gray-400 text-sm">{project.description}</p>
-        <span className="inline-block mt-2 px-4 py-2 bg-cyan-500 text-black font-semibold rounded-lg group-hover:bg-pink-500 transition-colors">
+
+        <p className="text-gray-400 text-sm flex-1">
+          {project.description}
+        </p>
+
+        {project.tags && (
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-2 py-1 rounded-full bg-gray-800 text-gray-400 border border-gray-700"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <span className="text-sm font-semibold text-cyan-400 group-hover:text-pink-400 transition-colors">
           Voir le projet →
         </span>
       </div>
@@ -77,14 +113,21 @@ function WebProjectCard({ project, index }: { project: Project; index: number })
   );
 }
 
-function UXProjectCard({ project, index }: { project: Project; index: number }) {
+function UXProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   const isEven = index % 2 === 0;
+
   return (
     <motion.div
       className="w-full"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <div
@@ -92,25 +135,27 @@ function UXProjectCard({ project, index }: { project: Project; index: number }) 
           !isEven ? "lg:flex-row-reverse" : ""
         }`}
       >
-        <div className="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-xl">
+        <div className="w-full lg:w-1/2 rounded-2xl overflow-hidden">
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-64 sm:h-80 lg:h-96 object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-64 sm:h-80 lg:h-96 object-cover"
           />
         </div>
+
         <div className="w-full lg:w-1/2 space-y-4 text-center lg:text-left">
-          <h3 className="text-2xl sm:text-3xl font-bold text-white">
+          <h3 className="text-2xl font-bold text-white">
             {project.title}
           </h3>
-          <p className="text-gray-400 text-sm sm:text-base lg:text-lg">
+
+          <p className="text-gray-400">
             {project.description}
           </p>
+
           <a
             href={project.link}
             target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 py-3 bg-linear-to-r from-cyan-500 to-pink-500 text-white font-bold rounded-full shadow-lg hover:shadow-2xl transition-all duration-300"
+            className="inline-block px-6 py-3 bg-linear-to-r from-cyan-500 to-pink-500 text-white rounded-full"
           >
             Voir sur Figma →
           </a>
@@ -122,43 +167,36 @@ function UXProjectCard({ project, index }: { project: Project; index: number }) 
 
 export default function Projects() {
   return (
-    <section
-      className="py-16 px-4 sm:px-6 lg:px-12 xl:px-20 bg-black text-white overflow-hidden"
-      id="projects"
-    >
+    <section className="py-16 px-4 sm:px-6 lg:px-12 xl:px-20 bg-black text-white">
       <div className="max-w-7xl mx-auto space-y-20">
-        {/* SECTION WEB & MOBILE */}
-        <div className="space-y-8" id="web-mobile">
-          <h2 className="text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-linear-to-r from-cyan-400 to-blue-500">
-            Projets Web & Mobile
+
+        {/* WEB */}
+        <div className="space-y-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-cyan-400">
+            Projets Web
           </h2>
-          <div
-            className="
-              flex flex-col gap-6 
-              md:flex-row sm:overflow-x-auto sm:pb-4 
-              snap-x snap-mandatory 
-              scrollbar-thin scrollbar-thumb-cyan-500/40
-            "
-          >
+
+          {/* GRID FIX */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {webProjects.map((p, i) => (
-              <div key={i} className="snap-start w-full sm:w-auto">
-                <WebProjectCard project={p} index={i} />
-              </div>
+              <WebProjectCard key={p.title} project={p} index={i} />
             ))}
           </div>
         </div>
 
-        {/* SECTION UX/UI */}
-        <div className="space-y-12" id="design">
-          <h2 className="text-3xl sm:text-4xl font-extrabold bg-clip-text text-transparent bg-linear-to-r from-pink-400 to-purple-500">
+        {/* UX */}
+        <div className="space-y-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-pink-400">
             Projets UX/UI
           </h2>
+
           <div className="space-y-16">
             {uxProjects.map((p, i) => (
-              <UXProjectCard key={i} project={p} index={i} />
+              <UXProjectCard key={p.title} project={p} index={i} />
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );

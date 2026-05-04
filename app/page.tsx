@@ -70,7 +70,7 @@ export default function Home() {
                 >
                   LinkedIn
                 </a>
-                <a href="/CV_AMR_final_v1.pdf" download className="hover:text-cyan-400 transition-colors">
+                <a href="/CV_AMR_fullstack.pdf" download className="hover:text-cyan-400 transition-colors">
                   Télécharger CV
                 </a>
               </div>

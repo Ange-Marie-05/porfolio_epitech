@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={`${fontSans.variable} ${fontMono.variable} antialiased bg-background`}>
         <Sidebar />
 
-        <main className="md:ml-[200px] lg:ml-[250px] xl:ml-[300px] mt-15 md:mt-0 p-4 md:p-6 overflow-y-auto min-h-screen">
+        <main className="lg:ml-[200px] mt-15 md:mt-0 p-4 md:p-6 overflow-y-auto min-h-screen">
           {children}
         </main>
       </body>
